@@ -1,0 +1,148 @@
+﻿.content{
+			padding: 0; 
+			
+		}
+		
+		body{
+			background: url("/ClientCss/Conclave/images/bg.jpg") no-repeat top center;
+		}
+		
+		.mark1{
+			position: absolute;
+			right: 140px;
+    		top: 40px;
+		}
+		
+		.mark2{
+			position: absolute;
+			left: 140px;
+    		top: 40px;
+		}
+		
+		@media screen and (max-width: 767px)
+		{
+			body{
+				background: none;
+			}
+			
+			.profile img{
+				width: 100%;
+			}
+			
+			.content{
+				background: none;
+				text-align: center;
+			}
+			
+			.lft{
+				float: none!important;
+			}
+			
+			.pd{
+				padding-top: 20px!important;
+			}
+			
+			.detail{
+				padding-top: 20px!important;
+			}
+			
+			.description{
+				font-size: 16px!important;
+			}
+			
+			.tophead{
+				margin-top: 100px!important;
+			}
+			
+			.mark1{
+				top: 10px!important;
+    			left: 20px;
+			}
+			.mark2{
+				position: absolute;
+    			right: 20px;
+    			top: 20px;
+				text-align: right;
+			}
+			
+			.profile{
+				padding: 80px 0 0 0!important;
+			}
+			
+			.reg{
+				margin: 50px 0 20px 0!important; 
+				text-align: center;
+			}
+			
+			.reg-footer{
+				margin: 0!important;
+			}
+			
+			.reg-form{
+				padding: 0px!important;
+			}
+			
+		}
+		
+		.reg{
+			margin: 110px 0 20px 0; 
+			text-align: center;
+		}
+			
+		.reg-footer{
+			margin: 0 0 80px 0;
+		}
+		
+		.lft{
+			float: left;
+		}
+		
+		.profile{
+			padding: 60px 0 0 0;
+		}
+		
+		.form-control{
+			height: 45px;
+			border-radius: 0px!important;
+		}
+		
+		.btn-cstm{
+			border-radius: 20px;			
+			color: #ffffff;
+			background: #005926; /* Old browsers */
+background: -moz-linear-gradient(top, #005926 0%, #80ac25 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #005926 0%,#80ac25 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #005926 0%,#80ac25 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#005926', endColorstr='#80ac25',GradientType=0 ); /* IE6-9 */
+			padding: 7px 20px;
+			border: none!important;
+		}
+		
+		.btn-cstm:hover{
+			color: #ffffff;
+			background: #80ac25; /* Old browsers */
+background: -moz-linear-gradient(top, #80ac25 0%, #005926 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #80ac25 0%,#005926 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #80ac25 0%,#005926 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ac25', endColorstr='#005926',GradientType=0 ); /* IE6-9 */
+		}
+		
+		.reg-form{
+			padding: 0px 80px;
+		}
+
+        a {
+    color: #ffffff;
+    text-decoration: none;
+}
+.error {
+color:#EE2527!important;
+font-weight:600;
+font-size:11px;
+}
+
+.error1 {
+color:#EE2527!important;
+font-weight:700;
+font-size:11px;
+}
