@@ -1,26 +1,73 @@
+import { useState, useEffect } from "react";
+
 const WebcastDetail = () => {
+  const [webcastData, setWebcastData] = useState({
+    title: "",
+    speakerName: "",
+    speakerImage: "",
+    fields: [],
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/WebcastAllDetail", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            IPClientCode: "10041",
+            IPDeptID: "30",
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const data = await response.json();
+
+        const title = data.events[0]?.Title || "";
+        const speaker = data.speakerList[0] || {};
+        const speakerName = speaker.SpkName || "";
+        const speakerType = speaker.SpkType || "";
+        const speakerImage = speaker.SpkImage || "";
+        const fields = data.fieldList || [];
+
+        setWebcastData({
+          title,
+          speakerName,
+          speakerType,
+          speakerImage,
+          fields,
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="row">
       <div className="coll col-md-7">
-        <div className="text-center">
-          <img src="images/f1.png" className="Logo" alt="Webcast Logo" />
-          <h5 className="title1">
-            <u>Diabetes Dilemma Scientific Session 2022</u>
-          </h5>
-          <h4 className="title2">
-            Dapagliflozine, Heart failure - Impact of low-cost therapies
-          </h4>
+        <div className="text-center mt-3">
+          <img src="images/netcast.svg" className="Logo" alt="Webcast Logo" />
+
+          <h4 className="title2 mt-5">Topic: {webcastData.title}</h4>
         </div>
         <div>
           <div className="row text-center" style={{ marginTop: "5%" }}>
             <div className="col-md-6 mx-auto">
               <div className="drinfo">
-                <div className="drtitle">EXPERT</div>
-                <img src="images/dr1.jpg" className="dr1" />
+                <div className="drtitle">{webcastData.speakerType}</div>
+                <img src="images/dr1.png" className="dr1" />
                 <p>
-                  <span className="bold">Dr. Rajiv Sethi,</span>
+                  <span className="bold">{webcastData.speakerName}</span>
                   <br />
-                  Cardiologist,Pune
+                  {/* Cardiologist,Pune */}
                 </p>
               </div>
             </div>
@@ -35,55 +82,21 @@ const WebcastDetail = () => {
 
           <div id="Register" className="tabcontent">
             <form>
-              <div className="form-floating">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  id="floatingInput1"
-                  className="form-control"
-                  name="Name"
-                  required
-                />
-                <label htmlFor="floatingInput1">Name</label>
-              </div>
-              <div></div>
-              <div className="form-floating">
-                <input
-                  type="email"
-                  placeholder="Email"
-                  id="floatingInput1"
-                  className="form-control"
-                  name="Email"
-                  required
-                />
-                <label htmlFor="floatingInput1">Email Id</label>
-              </div>
-              <div></div>
-              <div className="form-floating">
-                <input
-                  type="text"
-                  placeholder="Mobile"
-                  id="floatingInput1"
-                  className="form-control"
-                  name="Mobile"
-                  required
-                />
-                <label htmlFor="floatingInput1">Mobile</label>
-              </div>
-              <div></div>
-
-              <div className="form-floating">
-                <input
-                  type="text"
-                  placeholder="Speciality"
-                  id="floatingInput1"
-                  className="form-control"
-                  name="Speciality"
-                  required
-                />
-                <label htmlFor="floatingInput1">City</label>
-              </div>
-              <div></div>
+              {webcastData.fields.map((field) => (
+                <div key={field.WcFid} className="form-floating">
+                  <input
+                    type={field.FieldType}
+                    placeholder={field.PlaceHolder}
+                    id={`floatingInput${field.WcFid}`}
+                    className="form-control"
+                    name={field.PlaceHolder}
+                    required={field.IsMandate === "M"}
+                  />
+                  <label htmlFor={`floatingInput${field.WcFid}`}>
+                    {field.PlaceHolder}
+                  </label>
+                </div>
+              ))}
 
               <div className="text-center">
                 <button
